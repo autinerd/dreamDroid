@@ -53,6 +53,7 @@ public class Statics {
 	public static final int ITEM_ADD_PROFILE = 0x6023;
 	public static final int ITEM_RELOAD = R.id.menu_reload;
 	public static final int ITEM_SAVE = R.id.menu_save;
+	public static final int ITEM_SHARE = R.id.menu_share;
 	public static final int ITEM_CANCEL = R.id.menu_cancel;
 	public static final int ITEM_PICK_SERVICE = 0x6027;
 	public static final int ITEM_PICK_BEGIN_DATE = 0x6028;

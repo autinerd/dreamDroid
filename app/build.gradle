@@ -8,7 +8,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:4.1.2'
     }
 }
 apply plugin: 'com.android.application'
@@ -29,19 +29,19 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.leanback:leanback:1.0.0'
     implementation 'androidx.leanback:leanback-preference:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.fragment:fragment:1.2.2'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.fragment:fragment:1.2.5'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'org.videolan.android:libvlc-all:3.1.12'
     implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.18'
     implementation 'com.github.StephenVinouze:MaterialNumberPicker:1.0.5'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.7'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.12'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'commons-net:commons-net:3.6'
@@ -50,7 +50,7 @@ dependencies {
     implementation 'ru.noties:markwon:2.0.2'
     implementation project(':libraries:gaugeview-library')
     implementation project(':libraries:MemorizingTrustManager')
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'net.sourceforge.streamsupport:android-retrostreams:1.7.1'
     implementation 'com.evernote:android-state:1.4.1'
     annotationProcessor 'com.evernote:android-state-processor:1.4.1'
@@ -58,19 +58,19 @@ dependencies {
     implementation 'com.github.franmontiel:AttributionPresenter:1.0.1'
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    implementation 'androidx.navigation:navigation-fragment:2.2.1'
-    implementation 'androidx.navigation:navigation-ui:2.2.1'
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
 }
 
 android {
-    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
-    buildToolsVersion project.BUILD_TOOLS_VERSION
+    compileSdkVersion 30
+    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         versionCode 439
         versionName="1.5.439"
         minSdkVersion 17
-        targetSdkVersion 29
+        targetSdkVersion 30
         multiDexEnabled true
         sourceSets {
             main {
@@ -107,10 +107,8 @@ android {
     project.ext.versionCodes = ['armeabi': 1, 'armeabi-v7a': 2, 'arm64-v8a': 3, 'mips': 5, 'mips64': 6, 'x86': 8, 'x86_64': 9]
 
     android.applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.versionCodeOverride =
-                    project.ext.versionCodes.get(output.getFilter(
-                            com.android.build.OutputFile.ABI), 99) * 10000000 + android.defaultConfig.versionCode
+        variant.outputs.all {
+            outputFileName = "${variant.name}-${variant.versionName}.apk"
         }
     }
 
